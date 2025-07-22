@@ -1,0 +1,24 @@
+<svg width="200" height="56" viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="diamondBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="100%" stop-color="#0071e3"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0.7" cy="0.3" r="0.7">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="8" y="8" width="40" height="40" rx="12" fill="url(#diamondBlue)"/>
+  <g>
+    <polygon points="28,16 40,32 28,40 16,32" fill="#fff" stroke="#0071e3" stroke-width="2"/>
+    <polygon points="28,20 36,32 28,36 20,32" fill="url(#shine)"/>
+    <ellipse cx="28" cy="32" rx="7" ry="3" fill="#e3f2fd" opacity="0.7"/>
+  </g>
+  <text x="60" y="34" font-family="'San Francisco', Arial, sans-serif" font-size="26" font-weight="bold" fill="#222">
+    Vikrmdeep Impex
+  </text>
+  <text x="60" y="48" font-family="'San Francisco', Arial, sans-serif" font-size="13" fill="#0071e3" letter-spacing="2">
+    DIAMOND EXPORTS
+  </text>
+</svg>

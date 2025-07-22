@@ -1,0 +1,331 @@
+.aboutus-outer {
+  max-width: 900px;
+  margin: 2.5rem auto 2rem auto;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.07);
+  padding: 0 0 2.5rem 0;
+}
+
+.aboutus-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+  border-radius: 22px 22px 0 0;
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+}
+
+.aboutus-logo {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 1.2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,113,227,0.10);
+  background: #fff;
+}
+
+.aboutus-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.aboutus-tagline {
+  font-size: 1.25rem;
+  color: #0071e3;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  text-align: center;
+}
+
+.aboutus-section {
+  padding: 2.2rem 2.5rem 1.2rem 2.5rem;
+  background: none;
+  border-radius: 0;
+  margin: 2rem 2rem 0 2rem;
+  box-shadow: none;
+}
+
+.aboutus-section h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.aboutus-section p, .aboutus-section ul {
+  font-size: 1.08rem;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 0.7rem;
+}
+
+.aboutus-section ul {
+  margin: 0.5rem 0 0 1.5rem;
+  padding: 0;
+}
+
+.aboutus-section li {
+  margin-bottom: 0.5rem;
+}
+
+.aboutus-divider {
+  width: 80%;
+  height: 2.5px;
+  background: linear-gradient(90deg, #e0e0e0 0%, #fff 50%, #e0e0e0 100%);
+  margin: 2.5rem auto 0 auto;
+  border-radius: 2px;
+  opacity: 0.7;
+  box-shadow: 0 0 8px 1px #fff8, 0 0 2px 0.5px #e0e0e0;
+  filter: blur(0.2px);
+}
+
+.aboutus-values {
+  margin: 0.5rem 0 0 1.5rem;
+  padding: 0;
+  color: #0071e3;
+  font-size: 1.08rem;
+  list-style: disc inside;
+}
+.aboutus-values li {
+  margin-bottom: 0.7rem;
+  color: #0071e3;
+  font-weight: 500;
+}
+
+/* Animations */
+.animate-fadein {
+  opacity: 0;
+  animation: fadein-appear 1.2s ease 0.1s forwards;
+}
+.animate-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: up-appear 1s cubic-bezier(.23,1.01,.32,1) forwards;
+}
+@keyframes fadein-appear {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes up-appear {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Animation trigger on scroll */
+.animate-fadein.visible, .animate-up.visible {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+.team-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+.team-member {
+  background: #f8f8fa;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 220px;
+  min-width: 180px;
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+.team-member:hover {
+  box-shadow: 0 8px 32px rgba(26,35,126,0.12);
+  transform: translateY(-4px) scale(1.04);
+}
+.team-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(26,35,126,0.10);
+  background: #fff;
+}
+.team-info {
+  text-align: center;
+}
+.team-name {
+  font-size: 1.13rem;
+  font-weight: 700;
+  color: #1a237e;
+  margin-bottom: 0.3rem;
+}
+.team-role {
+  font-size: 1rem;
+  color: #3949ab;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.team-bio {
+  font-size: 0.98rem;
+  color: #444;
+  font-weight: 400;
+  margin-bottom: 0.1rem;
+}
+.team-loading, .team-error {
+  color: #1a237e;
+  font-size: 1.08rem;
+  margin: 1.2rem 0;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .aboutus-outer {
+    padding: 0 0 1.2rem 0;
+  }
+  .aboutus-section {
+    padding: 1.2rem 1rem 0.7rem 1rem;
+    margin: 1.2rem 0.5rem 0 0.5rem;
+  }
+  .aboutus-hero {
+    padding: 1.5rem 0.5rem 1.2rem 0.5rem;
+  }
+  .aboutus-logo {
+    width: 48px;
+    height: 48px;
+  }
+  .aboutus-title {
+    font-size: 1.5rem;
+  }
+} 
+
+/* Headings: Elegant serif */
+.aboutus-title,
+.aboutus-section h2,
+.team-name {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+/* Body: Clean sans-serif */
+.aboutus-outer,
+.aboutus-section,
+.aboutus-section p,
+.aboutus-section ul,
+.team-role,
+.team-bio {
+  font-family: 'Montserrat', 'San Francisco', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+} 
+
+.aboutus-hero-replica {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 5rem 1rem 3.5rem 1rem;
+  margin-bottom: 0.5rem;
+}
+.aboutus-logo-replica {
+  width: 260px;
+  height: auto;
+  margin-bottom: 2.5rem;
+}
+.aboutus-hero-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 4.8rem;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-align: center;
+  line-height: 1.05;
+  margin-bottom: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+}
+.aboutus-hero-heading span:last-child {
+  white-space: nowrap;
+}
+.aboutus-hero-divider {
+  width: 120px;
+  height: 3px;
+  background: #f7e9b0;
+  border-radius: 2px;
+  margin: 0.2rem auto 2.5rem auto;
+  opacity: 0.95;
+}
+@media (max-width: 1100px) {
+  .aboutus-hero-heading {
+    font-size: 3.2rem;
+  }
+}
+@media (max-width: 700px) {
+  .aboutus-hero-heading {
+    font-size: 2.2rem;
+  }
+  .aboutus-hero-desc {
+    font-size: 1rem;
+    padding: 0 0.2rem;
+    max-width: 98vw;
+  }
+  .aboutus-hero-divider {
+    width: 60px;
+    margin-bottom: 1.2rem;
+  }
+} 
+
+/* Remove aboutus-team-section full-screen styles */
+.aboutus-team-section {
+  min-height: unset;
+  width: unset;
+  max-width: unset;
+  margin-left: unset;
+  transform: unset;
+  display: unset;
+  flex-direction: unset;
+  justify-content: unset;
+  align-items: unset;
+  background: unset;
+  padding-top: unset;
+  padding-bottom: unset;
+} 
+
+.aboutus-section, .aboutus-section p, .aboutus-section ul, .aboutus-section li, .aboutus-section h2 {
+  color: #ececec;
+} 
+
+.rcjewels-logo {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Montserrat', 'Oswald', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 1.35em;
+  color: #e6b800;
+  letter-spacing: 0.04em;
+  background: none;
+  text-shadow: 0 2px 12px rgba(230,184,0,0.10);
+  margin-right: 0.2em;
+  font-style: italic;
+}
+.rcjewels-logo-text {
+  color: #e6b800;
+  font-weight: 900;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  background: none;
+  font-style: italic;
+} 

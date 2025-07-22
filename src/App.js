@@ -9,6 +9,7 @@ import AboutUs from './AboutUs';
 import ContactUs from './ContactUs';
 import DiamondDetails from './DiamondDetails';
 import TeamMemberProfile from './TeamMemberProfile';
+import AdminUpload from './AdminUpload';
 
 function MenuDropdown({ open, onClose }) {
   const location = useLocation();
@@ -75,6 +76,7 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/diamond/:id" element={<DiamondDetails />} />
           <Route path="/team/:name" element={<TeamMemberProfile />} />
+          <Route path="/admin/upload" element={<AdminUpload />} />
         </Routes>
         <footer className="footer">
           <div className="footer-content">

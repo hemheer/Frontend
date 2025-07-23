@@ -11,12 +11,58 @@ function RCJewelsLogo() {
   );
 }
 
-function AboutUs() {
+function TeamSection() {
   const [team, setTeam] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    fetch('https://node-api-render-sdiq.onrender.com/api/about/team')
+      .then(response => response.json())
+      .then(data => {
+        setTeam(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError('Error fetching team.');
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <div className="aboutus-section animate-up">
+      <h2>Our Team</h2>
+      {loading && <div className="team-loading">Loading team...</div>}
+      {error && <div className="team-error">{error}</div>}
+      <div className="team-list">
+        {team.map(member => (
+          <div 
+            className="team-member" 
+            key={member.id} 
+            onClick={() => navigate(`/team/${member.name.toLowerCase().replace(/ /g, '-')}`)} 
+            style={{ cursor: 'pointer' }}
+          >
+            {member.photo && (
+              <img 
+                src={`https://node-api-render-sdiq.onrender.com/uploads/${member.photo}`} 
+                alt={member.name} 
+                className="team-img" 
+              />
+            )}
+            <div className="team-info">
+              <div className="team-name">{member.name}</div>
+              <div className="team-role">{member.role}</div>
+              {member.bio && <div className="team-bio">{member.bio}</div>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AboutUs() {
   useEffect(() => {
     const revealOnScroll = () => {
       document.querySelectorAll('.animate-fadein, .animate-up').forEach(el => {
@@ -29,25 +75,6 @@ function AboutUs() {
     revealOnScroll();
     window.addEventListener('scroll', revealOnScroll);
     return () => window.removeEventListener('scroll', revealOnScroll);
-  }, []);
-
-  const API_BASE_URL = "https://node-api-render-sdiq.onrender.com";
-
-  useEffect(() => {
-    setLoading(true);
-    fetch(`${API_BASE_URL}/api/team`)
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to fetch team');
-        return res.json();
-      })
-      .then(data => {
-        setTeam(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError('Could not load team.');
-        setLoading(false);
-      });
   }, []);
 
   return (
@@ -104,23 +131,7 @@ function AboutUs() {
         </ul>
       </div>
       <div className="aboutus-divider" />
-      <div className="aboutus-section animate-up">
-        <h2>Team</h2>
-        {loading && <div className="team-loading">Loading team...</div>}
-        {error && <div className="team-error">{error}</div>}
-        <div className="team-list">
-          {team.map(member => (
-            <div className="team-member" key={member.name} onClick={() => navigate(`/team/${member.name.toLowerCase().replace(/ /g, '-')}`)} style={{ cursor: 'pointer' }}>
-              <img src={member.image} alt={member.name} className="team-img" />
-              <div className="team-info">
-                <div className="team-name">{member.name}</div>
-                <div className="team-role">{member.role}</div>
-                <div className="team-bio">{member.bio}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <TeamSection />
     </div>
   );
 }

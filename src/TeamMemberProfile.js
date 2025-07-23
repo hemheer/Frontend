@@ -1,55 +1,62 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import './Gallery.css';
+import React, { useState, useEffect } from 'react';
 
-const profiles = {
-  'vikram-shah': {
-    name: 'Vikram Shah',
-    role: 'Proprietor',
-    image: '/images/vikram-shah.jpg',
-    experience: 'Over 25 years of experience in the diamond industry. Founder and visionary behind Vikramdeep Impex and RC Jewels. Renowned for his leadership, integrity, and commitment to excellence.'
-  },
-  'kevin-parikh': {
-    name: 'Kevin Parikh',
-    role: 'Chief Financial Officer',
-    image: '/images/kevin-parikh.jpg',
-    experience: 'Joined in 2016. Manages all financial operations for both companies. Expert in financial strategy, compliance, and growth management.'
-  },
-  'deepak-shah': {
-    name: 'Deepak Shah',
-    role: 'Head of Sales',
-    image: '/images/deepak-shah.jpg',
-    experience: 'Over 35 years of experience in the diamond industry. Leads the sales team with expertise and dedication.'
-  }
-};
+function TeamSection() {
+  const [team, setTeam] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-function TeamMemberProfile() {
-  const { name } = useParams();
-  const navigate = useNavigate();
-  const profile = profiles[name];
-
-  if (!profile) {
-    return (
-      <div className="gallery-container" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div>
-          <h2>Team Member Not Found</h2>
-          <button className="upload-btn" onClick={() => navigate('/about')}>Back to About Us</button>
-        </div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    fetch('https://node-api-render-sdiq.onrender.com/api/about/team')
+      .then(response => response.json())
+      .then(data => {
+        setTeam(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError('Error fetching team.');
+        setLoading(false);
+      });
+  }, []);
 
   return (
-    <div className="gallery-container team-profile-container">
-      <div className="team-profile-img-wrap">
-        <img src={profile.image} alt={profile.name} className="team-profile-img" />
+    <div style={{ maxWidth: 800, margin: '2rem auto', padding: '1rem' }}>
+      <h2 style={{ textAlign: 'center', color: '#f7e9b0', marginBottom: '2rem' }}>Our Team</h2>
+      {loading && <div style={{ color: '#ececec', textAlign: 'center' }}>Loading...</div>}
+      {error && <div style={{ color: '#e57373', textAlign: 'center' }}>{error}</div>}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center' }}>
+        {team.map(member => (
+          <div key={member.id} style={{
+            background: '#232323',
+            borderRadius: 18,
+            padding: '1.5rem',
+            minWidth: 220,
+            maxWidth: 260,
+            textAlign: 'center',
+            color: '#ececec',
+            boxShadow: '0 2px 12px rgba(247,233,176,0.04)'
+          }}>
+            <h3 style={{ color: '#f7e9b0', marginBottom: 8 }}>{member.name}</h3>
+            <p style={{ fontWeight: 600, marginBottom: 8 }}>{member.role}</p>
+            {member.photo && (
+              <img
+                src={`https://node-api-render-sdiq.onrender.com/uploads/${member.photo}`}
+                alt={member.name}
+                style={{
+                  width: 100,
+                  height: 100,
+                  objectFit: 'cover',
+                  borderRadius: 16,
+                  marginBottom: 12,
+                  boxShadow: '0 0 0 2px #f7e9b0, 0 2px 8px rgba(247,233,176,0.10)'
+                }}
+              />
+            )}
+            {member.bio && <p style={{ fontSize: '0.98rem', color: '#ececec' }}>{member.bio}</p>}
+          </div>
+        ))}
       </div>
-      <div className="team-profile-name">{profile.name}</div>
-      <div className="team-profile-role">{profile.role}</div>
-      <div className="team-profile-exp">{profile.experience}</div>
-      <button className="upload-btn" style={{ marginTop: '2rem' }} onClick={() => navigate('/about')}>Back to About Us</button>
     </div>
   );
 }
 
-export default TeamMemberProfile; 
+export default TeamSection; 
